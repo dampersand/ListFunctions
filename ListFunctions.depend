@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1366690153 source:d:\programming\projects\listfunctions\dlist.cpp
+	"dlist.h"
+	<iostream>
+
+1366677001 d:\programming\projects\listfunctions\dlist.h
+
+1366690246 source:d:\programming\projects\listfunctions\main.cpp
+	<iostream>
+	"dlist.cpp"
+
+1366690397 d:\programming\projects\listfunctions\dlist.cpp
+	"dlist.h"
+
