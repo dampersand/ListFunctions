@@ -10,11 +10,9 @@ int main()
     testList.insertFront(2);
     testList.insertFront(3);
     testList.insertFront(4);
-    testList.insertFront(5);
-    testList.insertFront(6);
-    testList.insertFront(7);
 
-    //Output should be 76543... but it's backwards.  wat.
-    cout << testList.removeFront() << testList.removeFront() << testList.removeFront() << testList.removeFront() << testList.removeFront();
+    cout << testList.removeFront() << endl;
+    cout << "followed by: " << testList.removeFront() << endl;
+    cout << "and then: " << testList.removeFront();
     return 0;
 }
