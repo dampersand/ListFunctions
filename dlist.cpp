@@ -6,6 +6,8 @@ template<class T>
 Dlist<T>::Dlist()
 {
     std::cout << "Constructor Called\n\n";
+    this->first = new node;
+    this->last = new node;
     makeEmpty();
     std::cout << "Constructor completed\n\n";
 }
@@ -39,12 +41,15 @@ template<class T>
 void Dlist<T>::makeEmpty()
 {
     std::cout << "makeEmpty called\n";
-    Dlist<T>::node emptyNode;
-    emptyNode.next = 0;
-    emptyNode.prev = 0;
-    emptyNode.o = 0;
-    this->first = &emptyNode;
-    this->last = &emptyNode;
+    this->first = NULL;
+    this->last = NULL;
+   /* this->first->next = NULL;
+    this->first->prev = NULL;
+    this->first->o = 0;
+    this->last->next = NULL;
+    this->last->prev = NULL;
+    this->last->o = 0;
+    this->first = this->last;*/
     std::cout << "makeEmpty completed\n\n";
 
     return;
@@ -100,50 +105,55 @@ void Dlist<T>::copyAll(const Dlist &l)
 template<class T>
 bool Dlist<T>::isEmpty() const
 {
-    Dlist<T>::node* testNode;
-    testNode = this->first;
-    if (testNode == this->last)
-    {
-        delete testNode;
+    if (this->first == NULL || this->last == NULL)
         return true;
-    }
-    else
-    {
-     //   delete testNode;
-        return false;
-    }
+    return false;
 }
 
 
-//Heads up - the inserter pointer must be deleted by the destructor.
-//cout tested - definitely inserting the correct numbers.
+//Working correctly
 template<class T>
 void Dlist<T>::insertFront(const T &o)
 {
     std::cout << "insertFront called \n";
-    std::cout << "first data " << this->first->o << " is at address " << this->first << std::endl;
-    std::cout << "next data " << this->first->next->o << " is at address " << this->first->next << std::endl;
-
+    if (this->first !=this->last)
+    {
+        std::cout << "first data " << this->first->o << " is at address " << this->first << std::endl;
+        std::cout << "next data " << this->first->next->o << " is at address " << this->first->next << std::endl;
+    }
     Dlist<T>::node* oldFirst = this->first;
     this->first = new node;
     this->first->next = oldFirst;
     this->first->o = o;
     this->first->prev =0;
-    this->first->next->prev = this->first;
+    if (Dlist<T>::isEmpty())
+    {
+        this->last = new node;
+        this->last = this->first;
+    }
+    else
+    {
+        this->first->next->prev = this->first;
+    }
 
     std::cout << "\nfirst data is now " << this->first->o << " and is at new address " << this->first << std::endl;
-    std::cout << "next data is now " << this->first->next->o << " and is at new address " << this->first->next << std::endl;
+    if (this->last != this->first)
+        std::cout << "next data is now " << this->first->next->o << " and is at new address " << this->first->next << std::endl;
     std::cout << "insertFront completed\n\n";
 
     return;
 }
 
+//Working correctly
 template <typename T>
 void Dlist<T>::insertBack(const T &o)
 {
     std::cout << "insertBack called \n";
-    std::cout << "last data " << this->flast->o << " is at address " << this->last << std::endl;
-    std::cout << "previous data " << this->last->prev->o << " is at address " << this->last->prev << std::endl;
+    if (this->first != this->last)
+    {
+        std::cout << "last data " << this->last->o << " is at address " << this->last << std::endl;
+        std::cout << "previous data " << this->last->prev->o << " is at address " << this->last->prev << std::endl;
+    }
 
     Dlist<T>::node* oldLast = this->last;
     this->last = new node;
@@ -153,37 +163,51 @@ void Dlist<T>::insertBack(const T &o)
     this->last->prev->next = this->last;
 
     std::cout << "\nlast data is now " << this->last->o << " and is at new address " << this->last << std::endl;
-    std::cout << "last data is now " << this->last->prev->o << " and is at new address " << this->last->prev << std::endl;
-    std::cout << "insertBack completed\n\n";
+    if (this->first !=this->last)
+    {
+        std::cout << "last data is now " << this->last->prev->o << " and is at new address " << this->last->prev << std::endl;
+        std::cout << "insertBack completed\n\n";
+    }
 
     return;
 }
 
+//Working correctly
 template<class T>
 T Dlist<T>::removeFront()
 {
-
-    Dlist<T>::node* dummyNode = new node;
+    std::cout << "removeFront called\n";
+    Dlist<T>::node* dummyNode;
     T temporary;
     try
-    {
-        if (this->isEmpty())
+    {   if (isEmpty())
         {
             emptyList excepted;
             throw excepted;
         }
-        temporary = this->first->o;
-        dummyNode = this->first->next;
-        this->first = dummyNode;
-        delete this->first->prev;
-        delete dummyNode;
     }
     catch(emptyList e)
     {
         temporary = 0;
         delete dummyNode;
+        std::cout << "removeFront returned an empty-list exception\n";
         return temporary;
     }
+    std::cout << "first data (to be removed) is " << this->first->o << " at " << this->first << std::endl;
+
+    temporary = this->first->o;
+    dummyNode = this->first;
+    if (this->first != this->last)
+    {
+        this->first = this->first->next;
+        this->first->prev = NULL;
+    }
+    else
+        makeEmpty();
+    delete dummyNode;
+    if(!isEmpty())
+        std::cout << "new first data is " << this->first->o << " at " << this->first << std::endl;
+    std::cout << "removeFront completed.\n\n";
     return (temporary);
 
 
@@ -192,27 +216,37 @@ T Dlist<T>::removeFront()
 template <class T>
 T Dlist<T>::removeBack()
 {
-
+    std::cout << "removeBack called\n";
+    Dlist<T>::node* dummyNode;
     T temporary;
     try
-    {
-        if (this->isEmpty())
+    {   if (isEmpty())
         {
             emptyList excepted;
             throw excepted;
         }
-        temporary = this->last->o;
-        this->last = this->last->prev;
-        delete this->last->next;
-        delete this->last->next;
-        return temporary;
     }
-
     catch(emptyList e)
     {
         temporary = 0;
+        delete dummyNode;
+        std::cout << "removeBack returned an empty-list exception\n";
         return temporary;
     }
+    std::cout << "last data (to be removed) is " << this->last->o << " at " << this->last << std::endl;
 
-
+    temporary = this->last->o;
+    dummyNode = this->last;
+    if (this->first != this->last)
+    {
+        this->last = this->last->prev;
+        this->last->next = NULL;
+    }
+    else
+        makeEmpty();
+    delete dummyNode;
+    if(!isEmpty())
+        std::cout << "new last data is " << this->last->o << " at " << this->last << std::endl;
+    std::cout << "removeBack completed.\n\n";
+    return (temporary);
 }
