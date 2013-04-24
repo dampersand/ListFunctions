@@ -9,8 +9,7 @@
 	"dlist.cpp"
 	"RPN.h"
 
-1366793112 d:\programming\projects\listfunctions\dlist.cpp
-	"dlist.h"
+1366793646 d:\programming\projects\listfunctions\dlist.cpp
 
 1366782954 d:\programming\projects\listfunctions\rpn.cpp
 	<iostream>
@@ -26,10 +25,10 @@
 	<stdlib.h>
 	"dlist.cpp"
 
-1366792993 d:\programming\projects\listfunctions\rpn.h
+1366793646 d:\programming\projects\listfunctions\rpn.h
 	<iostream>
 	<string>
 	<sstream>
 	<stdlib.h>
-	"dlist.cpp"
+	"dlist.h"
 

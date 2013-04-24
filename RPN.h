@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #include <stdlib.h>
-#include "dlist.cpp"
+#include "dlist.h"
 
 using namespace std;
 
