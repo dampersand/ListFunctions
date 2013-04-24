@@ -5,7 +5,7 @@
 * Do not modify the class declarations!
 ***************************************/
 
-class emptyList {
+class emptyList { //Far as I can tell, this is about worst way to handle exceptions.  However, the person who had the project required that it remain this way.
 // OVERVIEW: an exception class
 };
 

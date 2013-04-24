@@ -1,3 +1,5 @@
+#ifndef DLIST_CPP
+#define DLIST_CPP
 #include "dlist.h"
 //#include <iostream>
 
@@ -110,28 +112,23 @@ template<class T>
 void Dlist<T>::insertFront(const T &o)
 {
     //std::cout << "insertFront called \n";
-    if (this->first !=this->last)
-    {
+   // if (this->first !=this->last)
+   // {
         //std::cout << "first data " << this->first->o << " is at address " << this->first << std::endl;
         //std::cout << "next data " << this->first->next->o << " is at address " << this->first->next << std::endl;
-    }
+   // }
     Dlist<T>::node* oldFirst = this->first;
     this->first = new node;
     this->first->next = oldFirst;
     this->first->o = o;
     this->first->prev =0;
     if (Dlist<T>::isEmpty())
-    {
-        this->last = new node;
         this->last = this->first;
-    }
     else
-    {
         this->first->next->prev = this->first;
-    }
 
     //std::cout << "\nfirst data is now " << this->first->o << " and is at new address " << this->first << std::endl;
-    if (this->last != this->first)
+    //if (this->last != this->first)
         //std::cout << "next data is now " << this->first->next->o << " and is at new address " << this->first->next << std::endl;
     //std::cout << "insertFront completed\n\n";
 
@@ -143,25 +140,28 @@ template <typename T>
 void Dlist<T>::insertBack(const T &o)
 {
     //std::cout << "insertBack called \n";
-    if (this->first != this->last)
-    {
+    //if (this->first != this->last)
+    //{
         //std::cout << "last data " << this->last->o << " is at address " << this->last << std::endl;
         //std::cout << "previous data " << this->last->prev->o << " is at address " << this->last->prev << std::endl;
-    }
+    //}
 
     Dlist<T>::node* oldLast = this->last;
     this->last = new node;
     this->last->prev = oldLast;
     this->last->o = o;
     this->last->next =0;
-    this->last->prev->next = this->last;
+    if (Dlist<T>::isEmpty())
+        this->first = this->last;
+    else
+        this->last->prev->next = this->last;
 
     //std::cout << "\nlast data is now " << this->last->o << " and is at new address " << this->last << std::endl;
-    if (this->first !=this->last)
-    {
+    //if (this->first !=this->last)
+    //{
         //std::cout << "last data is now " << this->last->prev->o << " and is at new address " << this->last->prev << std::endl;
         //std::cout << "insertBack completed\n\n";
-    }
+    //}
 
     return;
 }
@@ -199,7 +199,7 @@ T Dlist<T>::removeFront()
     else
         makeEmpty();
     delete dummyNode;
-    if(!isEmpty())
+    //if(!isEmpty())
         //std::cout << "new first data is " << this->first->o << " at " << this->first << std::endl;
     //std::cout << "removeFront completed.\n\n";
     return (temporary);
@@ -239,8 +239,12 @@ T Dlist<T>::removeBack()
     else
         makeEmpty();
     delete dummyNode;
-    if(!isEmpty())
+    //if(!isEmpty())
         //std::cout << "new last data is " << this->last->o << " at " << this->last << std::endl;
     //std::cout << "removeBack completed.\n\n";
     return (temporary);
 }
+
+
+
+#endif // DLIST_CPP

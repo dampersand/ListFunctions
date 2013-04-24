@@ -1,14 +1,35 @@
 # depslib dependency file v1.0
-1366767801 source:d:\programming\projects\listfunctions\dlist.cpp
+1366793112 source:d:\programming\projects\listfunctions\dlist.cpp
 	"dlist.h"
-	<iostream>
 
-1366677001 d:\programming\projects\listfunctions\dlist.h
+1366779435 d:\programming\projects\listfunctions\dlist.h
 
-1366767918 source:d:\programming\projects\listfunctions\main.cpp
+1366783536 source:d:\programming\projects\listfunctions\main.cpp
 	<iostream>
 	"dlist.cpp"
+	"RPN.h"
 
-1366768182 d:\programming\projects\listfunctions\dlist.cpp
+1366793112 d:\programming\projects\listfunctions\dlist.cpp
 	"dlist.h"
+
+1366782954 d:\programming\projects\listfunctions\rpn.cpp
+	<iostream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	"dlist.cpp"
+
+1366782954 source:d:\programming\projects\listfunctions\rpn.cpp
+	<iostream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	"dlist.cpp"
+
+1366792993 d:\programming\projects\listfunctions\rpn.h
+	<iostream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	"dlist.cpp"
 

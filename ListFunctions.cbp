@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="RPN.h" />
 		<Unit filename="dlist.cpp" />
 		<Unit filename="dlist.h" />
 		<Unit filename="main.cpp" />

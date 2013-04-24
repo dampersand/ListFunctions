@@ -1,25 +1,23 @@
 #include <iostream>
 #include "dlist.cpp"
+#include "RPN.h"
 
 using namespace std;
 
 int main()
 {
-    Dlist<int> testList;
 
-    testList.insertFront(1);
-    testList.insertFront(3);
-    testList.insertFront(5);
-    testList.insertFront(7);
-    testList.insertFront(9);
+    int userIn = 0;
+    cout << "Select your front-end.\n" << "[1] Reverse Polish Notation calculator\n[2] Not yet defined.\n>";
+    cin >> userIn;
 
-    Dlist<int> copyList(testList);
+    switch(userIn)
+    {
+        case 1:
+            RPN();
+            break;
+    }
 
-    for(int i=0; i < 7; i++)
-        cout << testList.removeFront() << endl;
-
-    for (int i=0; i < 7; i++)
-        cout << copyList.removeFront() << endl;
 
     return 0;
 }
